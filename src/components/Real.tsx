@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useConnect, useDisconnect, useWriteContract } from 'wagmi';
-import { parseEther } from 'viem';
 // import { config } from '~/components/providers/WagmiProvider';
 import sdk, { type Context } from '@farcaster/frame-sdk';
 import Image from 'next/image';
@@ -17,8 +16,6 @@ const gmgm = "0x6C1B2176d4a2eF26024c896D93f86619C5E0cE5d";
 
 
 
-// Replace with your Neynar API key
-const NEYNAR_API_KEY = "NEYNAR_API_DOCS";
 
 
 
@@ -31,8 +28,8 @@ export default function App() {
   const [context, setContext] = useState<Context.FrameContext>();
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
   const [fid, setFid] = useState<number | null>(null);
-  const [score, setScore] = useState<number | null>(null);
-  const [eligible, setEligible] = useState<number>(0);
+  const [score] = useState<number | null>(null);
+  const [eligible] = useState<number>(0);
   
   const [profile, setProfile] = useState({
     username: 'user.eth',
@@ -219,7 +216,7 @@ export default function App() {
           <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Say GM</h2>
           <div className="text-center">
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Click the button below to say "gm" to the blockchain!
+              Click the button below to say &quot;gm&quot; to the blockchain!
             </p>
             <button
               onClick={handleSayGM}
@@ -234,7 +231,7 @@ export default function App() {
             </button>
             {isConnected && (
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                This will write "gm" to the blockchain
+                This will write &quot;gm&quot; to the blockchain
               </p>
             )}
           </div>

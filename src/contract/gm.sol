@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 contract GM {
-    event GM(string message, address sender, uint256 timestamp);
+    event GMSaid(string message, address sender, uint256 timestamp);
     
     uint256 public totalGMs;
     mapping(address => uint256) public userGMs;
@@ -11,7 +11,7 @@ contract GM {
         totalGMs++;
         userGMs[msg.sender]++;
         
-        emit GM("gm", msg.sender, block.timestamp);
+        emit GMSaid("gm", msg.sender, block.timestamp);
     }
     
     function getTotalGMs() public view returns (uint256) {
