@@ -137,20 +137,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
-            cOUNTDOWN
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
-            CompletE tasks and CLAIM your drop
-          </p>
-        </div>
 
         {/* Timer Section */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-6">
           <div className="text-center mb-4">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">gmgmr</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">gmgmm onchain</h2>
           </div>
 
         
