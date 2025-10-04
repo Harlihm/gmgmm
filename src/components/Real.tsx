@@ -12,7 +12,7 @@ type UserWithPfp = {
   profile?: { imageUrl?: string; avatar?: string };
 };
 
-const gmgm = "0x6C1B2176d4a2eF26024c896D93f86619C5E0cE5d";
+const gmgm = "0x2040dfb0fde1dc554e47877db80c87eca7b950d9";
 
 
 
@@ -175,7 +175,7 @@ export default function App() {
               )}
               {fid && (
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Neynar FID: {fid}
+                  {/* Neynar FID: {fid} */}
                 </p>
               )}
               {score !== null && (
