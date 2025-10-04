@@ -20,9 +20,12 @@ const gmgm = "0x2040dfb0fde1dc554e47877db80c87eca7b950d9";
 
 
 export default function App() {
-  const { address, isConnected, chainId } = useAccount();
+  const { address, isConnected, 
+    // chainId
+
+   } = useAccount();
   const { connectAsync, connectors } = useConnect();
-  const BASE_CHAIN_ID = 8453;
+  // const BASE_CHAIN_ID = 8453;
   const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   
@@ -93,7 +96,7 @@ export default function App() {
       }
       const preferredConnector = connectors?.[0];
       if (preferredConnector) {
-        await connectAsync({ connector: preferredConnector, chainId: BASE_CHAIN_ID });
+        await connectAsync({ connector: preferredConnector });
       } else {
         console.warn('No wallet connectors available');
       }
@@ -106,11 +109,6 @@ export default function App() {
     try {
       if (!isConnected) {
         alert('Please connect your wallet first');
-        return;
-      }
-      // Use wagmi chainId to check for Base
-      if (chainId !== BASE_CHAIN_ID) {
-        alert(`Please switch your wallet to Base network. Current chainId: ${chainId}`);
         return;
       }
       console.log('Saying GM to blockchain...');
@@ -127,7 +125,6 @@ export default function App() {
           }
         ],
         functionName: 'sayGM',
-        chainId: BASE_CHAIN_ID,
       });
       console.log('GM transaction hash:', hash);
       alert(`GM sent to blockchain! Transaction: ${hash}`);
