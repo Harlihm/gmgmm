@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useConnect, useDisconnect, useWriteContract } from 'wagmi';
+import { base } from 'wagmi/chains';
 // import { config } from '~/components/providers/WagmiProvider';
 import sdk, { type Context } from '@farcaster/frame-sdk';
 import Image from 'next/image';
@@ -125,6 +126,7 @@ export default function App() {
           }
         ],
         functionName: 'sayGM',
+        chainId: base.id,
       });
       console.log('GM transaction hash:', hash);
       alert(`GM sent to blockchain! Transaction: ${hash}`);

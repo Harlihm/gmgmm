@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
 
 export const config = createConfig({
-  chains: [optimism, base, mainnet, degen, unichain],
+  chains: [base, optimism, mainnet, degen, unichain],
   transports: {
     [base.id]: http(),
     [optimism.id]: http(),
