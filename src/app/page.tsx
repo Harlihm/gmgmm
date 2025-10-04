@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import App from "./app";
 
-const appUrl = "https://gmgmm.vercel.app";
+const appUrl = "https://gmgmm.vercel.app";  
+
 
 const frame = {
   version: "next",

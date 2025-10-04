@@ -8,14 +8,14 @@ export async function GET() {
       payload: "eyJkb21haW4iOiJnbWdtbS52ZXJjZWwuYXBwIn0",
       signature:
         "MHhjNWM0ZjhhNWY1NDI4YTg5OGE3NGFlOTZlNDgxNDg5OTQyM2Q3YjBkNTY1MDM5NjgxZDYwNTNhZDhhZjdhMGQ5MWIwY2EyMTdmMjQ3MTg0YzgxNmU4MzIzZGViZWVjZjQ2Mzg1NmFkMGI5MTkyY2FkMzVlNWMzZjc0YTkyOWEwYTFj",
-    },
+    }, 
     frame: {
       version: "1",
-      name: "Mini App Template",
+      name: "say gmgmm",
       iconUrl: `${appUrl}/icon.png`,
       homeUrl: appUrl,
       imageUrl: `${appUrl}/opengraph-image`,
-      buttonTitle: "Launch Frame",
+      buttonTitle: "Say gmgmm",
       splashImageUrl: `${appUrl}/splash.png`,
       splashBackgroundColor: "#f7f7f7",
       webhookUrl: `${appUrl}/api/webhook`,
