@@ -1,5 +1,5 @@
 export async function GET() {
-  const appUrl = "https://mini-app-template-ebon.vercel.app";
+  const appUrl = "https://gmgmm.vercel.app";
 
   const config = {
     accountAssociation: {
