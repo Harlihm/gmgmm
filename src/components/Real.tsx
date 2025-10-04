@@ -22,6 +22,7 @@ const gmgm = "0x2040dfb0fde1dc554e47877db80c87eca7b950d9";
 export default function App() {
   const { address, isConnected } = useAccount();
   const { connectAsync, connectors } = useConnect();
+  const BASE_CHAIN_ID = 8453;
   const { disconnect } = useDisconnect();
   const { writeContractAsync } = useWriteContract();
   
@@ -92,7 +93,7 @@ export default function App() {
       }
       const preferredConnector = connectors?.[0];
       if (preferredConnector) {
-        await connectAsync({ connector: preferredConnector });
+        await connectAsync({ connector: preferredConnector, chainId: BASE_CHAIN_ID });
       } else {
         console.warn('No wallet connectors available');
       }
@@ -108,8 +109,18 @@ export default function App() {
         return;
       }
 
+      // Ensure user is on Base chain
+      interface EthereumProvider {
+        networkVersion?: string;
+        // add other properties/methods if needed
+      }
+      const eth = (window as { ethereum?: EthereumProvider }).ethereum;
+      if (eth?.networkVersion !== String(BASE_CHAIN_ID)) {
+        alert('Please switch your wallet to Base network.');
+        return;
+      }
+
       console.log('Saying GM to blockchain...');
-      
       // Call the sayGM function on the smart contract
       const hash = await writeContractAsync({
         address: gmgm as `0x${string}`,
@@ -123,6 +134,7 @@ export default function App() {
           }
         ],
         functionName: 'sayGM',
+        chainId: BASE_CHAIN_ID,
       });
 
       console.log('GM transaction hash:', hash);
