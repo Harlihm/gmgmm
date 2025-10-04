@@ -8,10 +8,10 @@ const frame = {
   imageUrl: `${appUrl}/opengraph-image`,
   isEmbeddable: true,
   button: {
-    title: "Launch Frame",
+    title: "say gm",
     action: {
       type: "launch_frame",
-      name: "Farcaster Frames v2 Demo",
+      name: "gm onchain",
       url: appUrl,
       splashImageUrl: `${appUrl}/splash.png`,
       splashBackgroundColor: "#f7f7f7",
