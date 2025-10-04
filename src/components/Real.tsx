@@ -20,7 +20,7 @@ const gmgm = "0x2040dfb0fde1dc554e47877db80c87eca7b950d9";
 
 
 export default function App() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, chainId } = useAccount();
   const { connectAsync, connectors } = useConnect();
   const BASE_CHAIN_ID = 8453;
   const { disconnect } = useDisconnect();
@@ -108,18 +108,11 @@ export default function App() {
         alert('Please connect your wallet first');
         return;
       }
-
-      // Ensure user is on Base chain
-      interface EthereumProvider {
-        networkVersion?: string;
-        // add other properties/methods if needed
-      }
-      const eth = (window as { ethereum?: EthereumProvider }).ethereum;
-      if (eth?.networkVersion !== String(BASE_CHAIN_ID)) {
-        alert('Please switch your wallet to Base network.');
+      // Use wagmi chainId to check for Base
+      if (chainId !== BASE_CHAIN_ID) {
+        alert(`Please switch your wallet to Base network. Current chainId: ${chainId}`);
         return;
       }
-
       console.log('Saying GM to blockchain...');
       // Call the sayGM function on the smart contract
       const hash = await writeContractAsync({
@@ -136,7 +129,6 @@ export default function App() {
         functionName: 'sayGM',
         chainId: BASE_CHAIN_ID,
       });
-
       console.log('GM transaction hash:', hash);
       alert(`GM sent to blockchain! Transaction: ${hash}`);
     } catch (error) {
@@ -180,6 +172,7 @@ export default function App() {
                   {address.slice(0, 6)}...{address.slice(-4)}
                 </p>
               )}
+              {/* Chain info display removed due to wagmi API limitations */}
               {context?.user?.fid && (
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   FID: {context.user.fid}
