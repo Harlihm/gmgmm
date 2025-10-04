@@ -24,10 +24,10 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Farcaster Frames v2 Demo",
+    title: "Say gm onchain",
     openGraph: {
-      title: "Farcaster Frames v2 Demo",
-      description: "A Farcaster Frames v2 demo app.",
+      title: "Say gm onchain",
+      description: "A Farcaster gm app.",
     },
     other: {
       "fc:frame": JSON.stringify(frame),
