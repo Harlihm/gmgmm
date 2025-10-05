@@ -1,30 +1,201 @@
 # 🖼️ frames-v2-demo
 
-A Farcaster Frames v2 demo app.
+A comprehensive Farcaster Frames v2 demo app showcasing the latest features and capabilities of the Frames v2 SDK.
+
+## ✨ Features
+
+- **🔄 Real-time Context Access** - Access user profile and frame context data
+- **🔗 Wallet Integration** - Connect to Farcaster wallet using Wagmi
+- **💳 Transaction Support** - Send transactions and sign messages
+- **🌐 External URL Navigation** - Open external links from within frames
+- **📱 Mobile-Optimized** - Designed for mobile frame experience
+- **⚡ Modern Stack** - Built with Next.js, TypeScript, and Tailwind CSS
+
+## 🚀 Quick Start
 
 [🛠️ Frame Playground](https://warpcast.com/~/developers/frame-playground) (Mobile only)<br/>
 [📦 Frame SDK](https://github.com/farcasterxyz/frames/)<br/>
 [👀 Dev preview docs](https://github.com/farcasterxyz/frames/wiki/frames-v2-developer-playground-preview)<br/>
 
-## Getting Started
+## 🛠️ Tech Stack
+
+- **[Next.js 14](https://nextjs.org/)** - React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Wagmi](https://wagmi.sh/)** - React hooks for Ethereum
+- **[Viem](https://viem.sh/)** - TypeScript interface for Ethereum
+- **[@farcaster/frame-sdk](https://github.com/farcasterxyz/frames/)** - Official Frames v2 SDK
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── frames/            # Frame-specific pages
+│   └── globals.css        # Global styles
+├── components/            # React components
+│   ├── providers/         # Context providers
+│   └── ui/               # Reusable UI components
+├── lib/                  # Utility functions
+└── contract/             # Smart contract files
+```
+
+## 🚀 Getting Started
 
 This is a [NextJS](https://nextjs.org/) + TypeScript + React app.
 
-To install dependencies:
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+- [ngrok](https://ngrok.com/) for local development
+
+### Installation
 
 ```bash
-$ pnpm
+# Clone the repository
+git clone <repository-url>
+cd frames-v2-demo
+
+# Install dependencies
+pnpm install
 ```
 
-To run the app:
+### Development
 
 ```bash
-$ pnpm dev
+# Start the development server
+pnpm dev
+
+# In another terminal, start ngrok for external access
+ngrok http http://localhost:3000
 ```
 
-To try your app in the Warpcast playground, you'll want to use a tunneling tool like [ngrok](https://ngrok.com/).
+### Testing in Warpcast
 
-## Tutorial
+1. Open the [Frame Playground](https://warpcast.com/~/developers/frame-playground) on mobile
+2. Enter your ngrok URL (e.g., `https://abc123.ngrok.io`)
+3. Tap "Launch" to test your frame
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```bash
+# Optional: Enable debug mode
+NEXT_PUBLIC_DEBUG=true
+
+# Optional: Custom RPC endpoints
+NEXT_PUBLIC_RPC_URL=https://mainnet.base.org
+
+# Optional: Frame configuration
+NEXT_PUBLIC_FRAME_TITLE="My Frame App"
+NEXT_PUBLIC_FRAME_DESCRIPTION="A cool frame app"
+```
+
+### Frame Configuration
+
+You can customize your frame's appearance and behavior by modifying the frame configuration:
+
+```typescript
+// In your frame component
+sdk.actions.configure({
+  title: "My Custom Frame",
+  description: "A frame that does amazing things",
+  image: "https://example.com/frame-image.png",
+  button: {
+    label: "Get Started",
+    action: "post_redirect",
+  },
+});
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Other Platforms
+
+This app can be deployed to any platform that supports Next.js:
+
+- **Netlify** - Automatic deployments from Git
+- **Railway** - Simple deployment with environment variables
+- **Render** - Full-stack deployment platform
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Frame not loading in Warpcast:**
+
+- Ensure your app calls `sdk.actions.ready()`
+- Check that your ngrok URL is accessible
+- Verify HTTPS is enabled (required for frames)
+
+**Wallet connection issues:**
+
+- Make sure you're testing on mobile Warpcast
+- Check that the frame connector is properly configured
+- Verify Wagmi configuration includes the frame connector
+
+**Build errors:**
+
+- Clear `.next` folder and reinstall dependencies
+- Ensure all TypeScript types are properly imported
+- Check that all required environment variables are set
+
+### Debug Mode
+
+Enable debug logging by adding to your environment:
+
+```bash
+# .env.local
+NEXT_PUBLIC_DEBUG=true
+```
+
+## 📚 API Reference
+
+### Frame SDK Methods
+
+```typescript
+// Initialize the frame
+sdk.actions.ready();
+
+// Access user context
+const context = await sdk.context;
+
+// Open external URL
+sdk.actions.openUrl("https://example.com");
+
+// Close the frame
+sdk.actions.close();
+```
+
+### Wagmi Hooks
+
+```typescript
+// Account management
+const { address, isConnected } = useAccount();
+const { connect, disconnect } = useConnect();
+
+// Transaction handling
+const { sendTransaction } = useSendTransaction();
+const { signMessage } = useSignMessage();
+const { signTypedData } = useSignTypedData();
+```
+
+## 🎯 Tutorial
 
 Here's a full walkthrough of creating a frames v2 app:
 
@@ -732,7 +903,6 @@ export default function Demo() {
 }
 ```
 
-
 Now let's request a transaction. We'll use the Wagmi `useSendTransaction` hook to call the Yoink contract and `useWaitForTransactionReceipt` to watch its status.
 
 > [!NOTE]
@@ -1132,4 +1302,55 @@ We've build a simple v2 frame by:
 4. Invoking actions using `sdk.actions`
 5. Connecting to the user's wallet using Wagmi and `sdk.wallet.ethProvider`
 
+## 🤝 Contributing
+
+We welcome contributions! Please see our contributing guidelines:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow the existing code style
+- Add tests for new features
+- Update documentation as needed
+- Ensure all checks pass
+
+## 📖 Additional Resources
+
+### Official Documentation
+
+- [Frames v2 Developer Guide](https://github.com/farcasterxyz/frames/wiki/frames-v2-developer-playground-preview)
+- [Wagmi Documentation](https://wagmi.sh/)
+- [Next.js Documentation](https://nextjs.org/docs)
+
+### Community
+
+- [Farcaster Discord](https://discord.gg/farcaster)
+- [Frames GitHub Discussions](https://github.com/farcasterxyz/frames/discussions)
+- [Warpcast Community](https://warpcast.com/)
+
+### Examples & Templates
+
+- [Frames v2 Examples](https://github.com/farcasterxyz/frames/tree/main/packages/frames/examples)
+- [Frame Templates](https://github.com/farcasterxyz/frames/tree/main/packages/frames/templates)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Farcaster](https://farcaster.xyz/) team for the amazing Frames v2 SDK
+- [Wagmi](https://wagmi.sh/) team for excellent Ethereum React hooks
+- [Viem](https://viem.sh/) team for the TypeScript Ethereum library
+- The open-source community for continuous inspiration
+
+---
+
 Happy Framesgiving! 🖼️🦃
+
+**Built with ❤️ for the Farcaster community**
